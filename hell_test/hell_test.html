@@ -59,8 +59,10 @@
           //alert(Math.random()*20);
           var bg=document.getElementById("bg");
           var man=document.getElementById("man");
+          //2013-04-08 basilwang have put style.left and style.top here, we can use percentage, but need calculate percentage also later;
           man.style.top="0px";
-          man.style.left="30%";
+          //man.style.left="30%";
+          man.style.left="450px";
           //2013-04-08 basilwang save the position of each brick
           var blocks=[];
           //alert(bg.id);
@@ -83,9 +85,9 @@
              left=parseInt(left)+"px";
 
              
-             //var snippet="<div class=\"brick\" style=\"top:"+top+";left:" + left+  "\" ></div>";
+             var snippet="<div class=\"brick\" style=\"top:"+top+";left:" + left+  "\" ></div>";
              //var snippet="<div class=\"brick\" style=\"top:200px;left:30%\" ></div>";
-             var snippet="<div class=\"brick\" style=\"top:"+top+";left:30%\" ></div>";
+             //var snippet="<div class=\"brick\" style=\"top:"+top+";left:30%\" ></div>";
              bg.innerHTML+=snippet;
              
           }
