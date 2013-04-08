@@ -5,7 +5,7 @@
 	<title>Man</title>
 	<style>
         .scene{
-        	background-color:blue;
+        	background-color:white;
         	position:absolute;
             top:0px;
         	width:100%;
@@ -42,17 +42,24 @@
           //alert(Math.random()*20);
           var bg=document.getElementById("bg");
           var man=document.getElementById("man");
+          //2013-04-08 basilwang save the position of each brick
+          var blocks=[];
           //alert(bg.id);
           var BRICK_NUM=20;
           var BG_HEIGHT=2000;
           var BG_WIDTH=800;
+          var BRICK_HEIGHT=10;
+          var BRICK_WIDTH=100;
           for(var i=0;i<BRICK_NUM;i++)
           {
 
-          	 var top=Math.random()*BG_HEIGHT;
-          	 top=parseInt(top)+"px";
+          	 var top=Math.random()*BG_HEIGHT;          	 
           	 var left=Math.random()*BG_WIDTH;
-          	 left=parseInt(left)+"px";
+             blocks[blocks.length]={top:top,left:left,height:BRICK_HEIGHT,width:BRICK_WIDTH};
+             top=parseInt(top)+"px";
+             left=parseInt(left)+"px";
+
+          	 
           	 var snippet="<div class=\"brick\" style=\"top:"+top+";left:" + left+  "\" ></div>";
              bg.innerHTML+=snippet;
           }
@@ -94,6 +101,14 @@
                console.log("object_to_move "+object_to_move.id+ "'s top is " + object_to_move.style.top);
                object_to_move.style.top=int_top+"px";   
 
+          }
+          /*
+              2013-04-08 basilwang to see if collapse happen
+          */
+          var collapse_check=function()
+          {
+               
+   
           }
           setInterval(fn,1000);
         }
