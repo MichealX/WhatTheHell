@@ -19,10 +19,20 @@
             position:absolute;
 
         }
+        
         #man
         {
         	position:absolute;
         	left:50%;
+          top:0px;
+        }
+         
+        .hiddenScrollBar
+        {
+          /* 2013-04-08 basilwang hide the scroll bar , cause bg is bigger than body element
+          */
+          overflow:hidden;
+
         }
     </style>
 	<script>
@@ -31,6 +41,7 @@
           
           //alert(Math.random()*20);
           var bg=document.getElementById("bg");
+          var man=document.getElementById("man");
           //alert(bg.id);
           var BRICK_NUM=20;
           var BG_HEIGHT=2000;
@@ -49,17 +60,57 @@
           var fn=function()
           {
                //alert(Math.random()*20);
+              
+               //2013-04-08 basilwang this doesn't work
+               /*
                bg.style.top =bg.style.top - 10;
                alert(bg.style.top);
+               */
                //bg.style.top-=10;
-
+               move(bg,20,0);
+               move(man,40,1);
           }	
-          setInterval(fn,2000);
+          /*
+             2013-04-08 basilwang refactor move function
+             params:
+                    object_to_move
+                    speed  
+                    direction   0 or 1 
+          */
+          var move=function(object_to_move,speed,direction)
+          {
+              var int_top=parseInt(object_to_move.style.top);
+               int_top = isNaN(int_top)?0:parseInt(int_top);
+               if(direction===0)
+               {
+                  int_top-=speed;
+               }
+               if(direction===1)
+               {
+                  int_top+=speed;
+
+               }
+               console.log("object_to_move "+object_to_move.id+"'s offsetParent is "+object_to_move.offsetParent);
+               console.log("object_to_move "+object_to_move.id+ "'s top is " + object_to_move.style.top);
+               object_to_move.style.top=int_top+"px";   
+
+          }
+          setInterval(fn,1000);
         }
     </script>
 </head>
-<body onload="init();">
-	<div id="bg" class="scene" style="height:3000px;">
-		<img src="mario.png" alt="" id="man"></div>
+<body onload="init();" class="hiddenScrollBar">
+  <!--2013-03-13 basilwang webkit can't get correct height if you put height in css, so we put here-->
+	<div id="bg" class="scene" style="height:3000px;" >
+		
+
+  </div>
+  <!--2013-04-08 basilwang can't put mario in bg, don't know why always get the null value from man's offsetParent--> 
+  <img src="mario_small.png" alt="" id="man"/>
+  <!--
+      <script>
+         alert(man.offsetParent); 
+    </script>
+  -->
 </body>
 </html>
