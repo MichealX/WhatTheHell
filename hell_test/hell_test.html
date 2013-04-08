@@ -50,20 +50,23 @@
           var BG_WIDTH=800;
           var BRICK_HEIGHT=10;
           var BRICK_WIDTH=100;
+          var man_speed=20;
+          var bg_speed=-20;
           for(var i=0;i<BRICK_NUM;i++)
           {
 
           	 var top=Math.random()*BG_HEIGHT;          	 
           	 var left=Math.random()*BG_WIDTH;
-             blocks[blocks.length]={top:top,left:left,height:BRICK_HEIGHT,width:BRICK_WIDTH};
+             //blocks[blocks.length]={top:top,left:left,height:BRICK_HEIGHT,width:BRICK_WIDTH};
              top=parseInt(top)+"px";
              left=parseInt(left)+"px";
 
           	 
           	 var snippet="<div class=\"brick\" style=\"top:"+top+";left:" + left+  "\" ></div>";
              bg.innerHTML+=snippet;
+             
           }
-
+          blocks=document.getElementsByClassName("brick");
           var fn=function()
           {
                //alert(Math.random()*20);
@@ -74,29 +77,24 @@
                alert(bg.style.top);
                */
                //bg.style.top-=10;
-               move(bg,20,0);
-               move(man,40,1);
+               move(bg,bg_speed);
+               move(man,man_speed);
+               collapse_check();
           }	
           /*
              2013-04-08 basilwang refactor move function
              params:
                     object_to_move
-                    speed  
-                    direction   0 or 1 
+                    speed  can be negative
+
           */
-          var move=function(object_to_move,speed,direction)
+          var move=function(object_to_move,speed)
           {
               var int_top=parseInt(object_to_move.style.top);
                int_top = isNaN(int_top)?0:parseInt(int_top);
-               if(direction===0)
-               {
-                  int_top-=speed;
-               }
-               if(direction===1)
-               {
-                  int_top+=speed;
 
-               }
+               int_top+=speed;
+
                console.log("object_to_move "+object_to_move.id+"'s offsetParent is "+object_to_move.offsetParent);
                console.log("object_to_move "+object_to_move.id+ "'s top is " + object_to_move.style.top);
                object_to_move.style.top=int_top+"px";   
@@ -107,7 +105,21 @@
           */
           var collapse_check=function()
           {
-               
+              /*var scrollTop = document.documentElement.scrollTop || document.body.scrollTop ;
+              console.log("the scrollTop is " + scrollTop);
+              */
+              console.log("the man top is " + man.style.top);
+
+              for(var i=0;i<BRICK_NUM;i++)
+              {
+                 
+                 console.log("the bg top is " + bg.style.top);
+                 console.log("the first brick top is "+ (parseInt(blocks[i].style.top)+parseInt(bg.style.top)) );
+                 
+
+
+              }
+
    
           }
           setInterval(fn,1000);
