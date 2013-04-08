@@ -23,8 +23,10 @@
         #man
         {
           position:absolute;
+          /*2013-04-08 basilwang don't know why we can't get null value of style.left
           left:30%;
           top:0px;
+          */
         }
          
         .hiddenScrollBar
@@ -35,6 +37,21 @@
 
         }
     </style>
+  
+</head>
+<body  class="hiddenScrollBar">
+  <!--2013-03-13 basilwang webkit can't get correct height if you put height in css, so we put here-->
+  <div id="bg" class="scene" style="height:3000px;" >
+    
+
+  </div>
+  <!--2013-04-08 basilwang can't put mario in bg, don't know why always get the null value from man's offsetParent--> 
+  <img src="mario_small.png" alt="" id="man"/>
+  <!--
+      <script>
+         alert(man.offsetParent); 
+    </script>
+  -->
   <script>
         function init()
         {
@@ -42,18 +59,20 @@
           //alert(Math.random()*20);
           var bg=document.getElementById("bg");
           var man=document.getElementById("man");
+          man.style.top="0px";
+          man.style.left="30%";
           //2013-04-08 basilwang save the position of each brick
           var blocks=[];
           //alert(bg.id);
-          var BRICK_NUM=1;
+          var BRICK_NUM=20;
           var BG_HEIGHT=2000;
           var BG_WIDTH=800;
           var BRICK_HEIGHT=10;
           var BRICK_WIDTH=100;
           var MAN_HEIGHT=106;
           var MAN_WIDTH=80;
-          var man_speed=10;
-          var bg_speed=-10;
+          var man_speed=2;
+          var bg_speed=-2;
           for(var i=0;i<BRICK_NUM;i++)
           {
 
@@ -65,7 +84,8 @@
 
              
              //var snippet="<div class=\"brick\" style=\"top:"+top+";left:" + left+  "\" ></div>";
-             var snippet="<div class=\"brick\" style=\"top:200px;left:30%\" ></div>";
+             //var snippet="<div class=\"brick\" style=\"top:200px;left:30%\" ></div>";
+             var snippet="<div class=\"brick\" style=\"top:"+top+";left:30%\" ></div>";
              bg.innerHTML+=snippet;
              
           }
@@ -112,6 +132,7 @@
               console.log("the scrollTop is " + scrollTop);
               */
               console.log("the man top is " + man.style.top);
+              console.log("the man left is " + man.style.left);
               var man_left=isNaN(parseInt(man.style.left))?0:parseInt(man.style.left);
               var man_left_bottom={x:man_left,y:parseInt(man.style.top)+MAN_HEIGHT};
               var man_right_bottom={x:man_left+MAN_WIDTH,y:parseInt(man.style.top)+MAN_HEIGHT};
@@ -126,7 +147,7 @@
                  var brick_top=(parseInt(blocks[i].style.top)+parseInt(bg.style.top));
                  var brick_left=parseInt(blocks[i].style.left);
                  var brick_dimension={top:brick_top,left:brick_left,right:brick_left+BRICK_WIDTH,bottom:brick_top+BRICK_HEIGHT};
-                 console.log(brick_dimension);
+                 //console.log(brick_dimension);
                  if( 
                     (man_left_bottom.y>brick_dimension.top&&man_left_bottom.y<brick_dimension.bottom
                       && man_left_bottom.x>brick_dimension.left&& man_left_bottom.x<brick_dimension.right)
@@ -135,6 +156,7 @@
                       && man_right_bottom.x>brick_dimension.left&& man_right_bottom.x<brick_dimension.right)
                    )                 
                  {
+                    console.log(brick_dimension);
                     alert("drop");
 
                  }
@@ -144,22 +166,9 @@
 
    
           }
-          setInterval(fn,500);
+          setInterval(fn,100);
         }
+        init();
     </script>
-</head>
-<body onload="init();" class="hiddenScrollBar">
-  <!--2013-03-13 basilwang webkit can't get correct height if you put height in css, so we put here-->
-  <div id="bg" class="scene" style="height:3000px;" >
-    
-
-  </div>
-  <!--2013-04-08 basilwang can't put mario in bg, don't know why always get the null value from man's offsetParent--> 
-  <img src="mario_small.png" alt="" id="man"/>
-  <!--
-      <script>
-         alert(man.offsetParent); 
-    </script>
-  -->
 </body>
 </html>
