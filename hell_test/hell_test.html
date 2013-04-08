@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Man</title>
-	<style>
+  <meta charset="UTF-8">
+  <title>Man</title>
+  <style>
         .scene{
-        	background-color:white;
-        	position:absolute;
-            top:0px;
-        	width:100%;
-        	border:solid 1px black;
+          background-color:white;
+          position:absolute;
+          top:0px;
+          width:100%;
+          border:solid 1px black;
         }
         .brick{
             width:100px;
@@ -19,79 +19,52 @@
             position:absolute;
 
         }
-        
         #man
         {
-        	position:absolute;
-        	left:30%;
-          top:0px;
-        }
-         
-        .hiddenScrollBar
-        {
-          /* 2013-04-08 basilwang hide the scroll bar , cause bg is bigger than body element
-          */
-          overflow:hidden;
-
+          position:absolute;
+          left:50%;
         }
     </style>
-	<script>
+  <script>
         function init()
         {
           
           //alert(Math.random()*20);
           var bg=document.getElementById("bg");
           var man=document.getElementById("man");
-          //2013-04-08 basilwang save the position of each brick
-          var blocks=[];
           //alert(bg.id);
-          var BRICK_NUM=1;
+          var BRICK_NUM=20;
           var BG_HEIGHT=2000;
           var BG_WIDTH=800;
-          var BRICK_HEIGHT=10;
-          var BRICK_WIDTH=100;
-          var MAN_HEIGHT=106;
-          var MAN_WIDTH=80;
-          var man_speed=20;
           var bg_speed=-20;
+          var man_speed=20;
           for(var i=0;i<BRICK_NUM;i++)
           {
 
-          	 var top=Math.random()*BG_HEIGHT;          	 
-          	 var left=Math.random()*BG_WIDTH;
-             //blocks[blocks.length]={top:top,left:left,height:BRICK_HEIGHT,width:BRICK_WIDTH};
+             var top=Math.random()*BG_HEIGHT;
              top=parseInt(top)+"px";
+             var left=Math.random()*BG_WIDTH;
              left=parseInt(left)+"px";
-
-          	 
-          	 //var snippet="<div class=\"brick\" style=\"top:"+top+";left:" + left+  "\" ></div>";
-             var snippet="<div class=\"brick\" style=\"top:200px;left:30%\" ></div>";
+             var snippet="<div class=\"brick\" style=\"top:"+top+";left:" + left+  "\" ></div>";
              bg.innerHTML+=snippet;
-             
           }
-          blocks=document.getElementsByClassName("brick");
+
           var fn=function()
           {
-               //alert(Math.random()*20);
-              
-               //2013-04-08 basilwang this doesn't work
-               /*
-               bg.style.top =bg.style.top - 10;
-               alert(bg.style.top);
-               */
-               //bg.style.top-=10;
-               move(bg,bg_speed);
-               move(man,man_speed);
-               collapse_check();
-          }	
-          /*
+             move(bg,bg_speed);
+             move(man,man_speed);
+
+          } 
+          setInterval(fn,1000);
+        }
+         /*
              2013-04-08 basilwang refactor move function
              params:
                     object_to_move
                     speed  can be negative
 
           */
-          var move=function(object_to_move,speed)
+        var move=function(object_to_move,speed)
           {
               var int_top=parseInt(object_to_move.style.top);
                int_top = isNaN(int_top)?0:parseInt(int_top);
@@ -103,63 +76,12 @@
                object_to_move.style.top=int_top+"px";   
 
           }
-          /*
-              2013-04-08 basilwang to see if collapse happen
-          */
-          var collapse_check=function()
-          {
-              /*var scrollTop = document.documentElement.scrollTop || document.body.scrollTop ;
-              console.log("the scrollTop is " + scrollTop);
-              */
-              console.log("the man top is " + man.style.top);
-              var man_left=isNaN(parseInt(man.style.left))?0:parseInt(man.style.left);
-              var man_left_bottom={x:man_left,y:parseInt(man.style.top)+MAN_HEIGHT};
-              var man_right_bottom={x:man_left+MAN_WIDTH,y:parseInt(man.style.top)+MAN_HEIGHT};
-              
-              console.log(man_left_bottom);
-              console.log(man_right_bottom);
-              for(var i=0;i<BRICK_NUM;i++)
-              {
-                 
-                 //console.log("the bg top is " + bg.style.top);
-                 //console.log("the first brick top is "+ (parseInt(blocks[i].style.top)+parseInt(bg.style.top)) );
-                 var brick_top=(parseInt(blocks[i].style.top)+parseInt(bg.style.top));
-                 var brick_left=parseInt(blocks[i].style.left);
-                 var brick_dimension={top:brick_top,left:brick_left,right:brick_left+BRICK_WIDTH,bottom:brick_top+BRICK_HEIGHT};
-                 console.log(brick_dimension);
-                 if( 
-                    (man_left_bottom.y>brick_dimension.top&&man_left_bottom.y<brick_dimension.bottom
-                      && man_left_bottom.x>brick_dimension.left&& man_left_bottom.x<brick_dimension.right)
-                    ||
-                    (man_right_bottom.y>brick_dimension.top&&man_right_bottom.y<brick_dimension.bottom
-                      && man_right_bottom.x>brick_dimension.left&& man_right_bottom.x<brick_dimension.right)
-                   )                 
-                 {
-                    alert("drop");
-
-                 }
-                       
-
-              }
-
-   
-          }
-          setInterval(fn,5000);
-        }
+        //init();
     </script>
 </head>
-<body onload="init();" class="hiddenScrollBar">
-  <!--2013-03-13 basilwang webkit can't get correct height if you put height in css, so we put here-->
-	<div id="bg" class="scene" style="height:3000px;" >
-		
-
-  </div>
-  <!--2013-04-08 basilwang can't put mario in bg, don't know why always get the null value from man's offsetParent--> 
-  <img src="mario_small.png" alt="" id="man"/>
-  <!--
-      <script>
-         alert(man.offsetParent); 
-    </script>
-  -->
+<body onload="init()">
+  <div id="bg" class="scene" style="height:3000px;">
+    </div>
+  <img src="mario_small.png" alt="" id="man">
 </body>
 </html>
