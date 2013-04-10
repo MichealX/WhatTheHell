@@ -151,12 +151,10 @@
                  var brick_dimension={top:brick_top,left:brick_left,right:brick_left+BRICK_WIDTH,bottom:brick_top+BRICK_HEIGHT};
                  //console.log(brick_dimension);
                  if( 
-                    (man_left_bottom.y>brick_dimension.top&&man_left_bottom.y<brick_dimension.bottom
-                      && man_left_bottom.x>brick_dimension.left&& man_left_bottom.x<brick_dimension.right)
+                    collpase_check_core(man_left_bottom,brick_dimension)
                     ||
-                    (man_right_bottom.y>brick_dimension.top&&man_right_bottom.y<brick_dimension.bottom
-                      && man_right_bottom.x>brick_dimension.left&& man_right_bottom.x<brick_dimension.right)
-                   )                 
+                    collpase_check_core(man_right_bottom,brick_dimension)     
+                   )          
                  {
                     console.log(brick_dimension);
                     man_speed=bg_speed;
@@ -167,6 +165,12 @@
               }
 
    
+          }
+          var collpase_check_core=function(point,dimension)
+          {
+               return (point.y>dimension.top&&point.y<dimension.bottom
+                      && point.x>dimension.left&& point.x<dimension.right)
+
           }
           setInterval(fn,200);
         }
