@@ -14,10 +14,11 @@ var BRICK_HEIGHT = 10;
 var BRICK_WIDTH = 100;
 var MAN_HEIGHT = 106;
 var MAN_WIDTH = 80;
-var man_speed = 2;
+var MAN_INITIAL_SPEED =4;
+var man_speed = MAN_INITIAL_SPEED;
 var MAN_HORIZONTAL_SPEED=2;
 var bg_speed = -2;
-var GRAVITY_SPEED=0.5;
+var GRAVITY_SPEED=0.9;
 var man_stop_status=false;
 var direction=1;  //1 means right and -1 means left
 var HORIZONTAL_MOVE_SPEED=2;
@@ -53,7 +54,10 @@ function init() {
   //setInterval(keyboard_check, 500);
 }
 function keyboard_check(e) {
-
+  
+  //2013-04-10 basilwang we can control direction only when stop
+  if(!man_stop_status)
+    return;
   if (!e) e = window.event;
   var code;
   if (ie) code = e.keyCode;
@@ -143,6 +147,8 @@ function collapse_check() {
 
   console.log(man_left_bottom);
   console.log(man_right_bottom);
+  var is_collpased=false;
+
   for (var i = 0; i < BRICK_NUM; i++) {
 
     //console.log("the bg top is " + bg.style.top);
@@ -161,9 +167,15 @@ function collapse_check() {
       console.log(brick_dimension);
       man_speed = bg_speed;
       man_stop_status=true;
+      is_collpased=true;
     }
 
 
+  }
+  if(!is_collpased)
+  {
+     man_stop_status=false;
+     man_speed=MAN_INITIAL_SPEED;
   }
 
 
