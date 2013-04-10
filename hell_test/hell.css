@@ -1,0 +1,32 @@
+.scene{
+          background-color:white;
+          position:absolute;
+            top:0px;
+          width:100%;
+          border:solid 1px black;
+        }
+        .brick{
+            width:100px;
+            height:10px;
+            background-color:red;
+            border:solid 1px black;
+            position:absolute;
+
+        }
+        
+        #man
+        {
+          position:absolute;
+          /*2013-04-08 basilwang don't know why we can't get null value of style.left
+          left:30%;
+          top:0px;
+          */
+        }
+         
+        .hiddenScrollBar
+        {
+          /* 2013-04-08 basilwang hide the scroll bar , cause bg is bigger than body element
+          */
+          overflow:hidden;
+
+        }
