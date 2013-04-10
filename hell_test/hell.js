@@ -10,6 +10,8 @@ var MAN_HEIGHT = 106;
 var MAN_WIDTH = 80;
 var man_speed = 2;
 var bg_speed = -2;
+var GRAVITY_SPEED=0.5;
+var man_stop_status=false;
 
 function init() {
 
@@ -42,6 +44,11 @@ function init() {
 }
 
 function timer_elasped() {
+  if(!man_stop_status)
+  {
+       man_speed+=GRAVITY_SPEED;
+  }
+
   //alert(Math.random()*20);
 
   //2013-04-08 basilwang this doesn't work
@@ -115,7 +122,7 @@ function collapse_check() {
     collpase_check_core(man_left_bottom, brick_dimension) || collpase_check_core(man_right_bottom, brick_dimension)) {
       console.log(brick_dimension);
       man_speed = bg_speed;
-
+      man_stop_status=true;
     }
 
 
