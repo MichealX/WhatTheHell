@@ -1,3 +1,9 @@
+//check browser version
+var ns4=document.layers;
+var ns6=document.getElementById && !document.all;
+var ns= ns4 || ns6;
+var ie = document.all;
+
 var bg, man;
 var blocks = [];
 //alert(bg.id);
@@ -9,12 +15,15 @@ var BRICK_WIDTH = 100;
 var MAN_HEIGHT = 106;
 var MAN_WIDTH = 80;
 var man_speed = 2;
+var MAN_HORIZONTAL_SPEED=2;
 var bg_speed = -2;
 var GRAVITY_SPEED=0.5;
 var man_stop_status=false;
-
+var direction=1;  //1 means right and -1 means left
+var HORIZONTAL_MOVE_SPEED=2;
 function init() {
 
+  window.addEvent(document,'keydown',keyboard_check);
   //alert(Math.random()*20);
   bg = document.getElementById("bg");
   man = document.getElementById("man");
@@ -41,8 +50,35 @@ function init() {
   blocks = document.getElementsByClassName("brick");
 
   setInterval(timer_elasped, 200);
+  //setInterval(keyboard_check, 500);
 }
+function keyboard_check(e) {
 
+  if (!e) e = window.event;
+  var code;
+  if (ie) code = e.keyCode;
+  else if (ns) code = e.which;
+  else {
+    alert("unknown browser");
+    return;
+  }
+
+  switch (code) {
+    case 37:
+      direction=-1;
+      console.log("you pressed left arrow.");
+     break;
+    case 39:
+      direction=1;
+      console.log("you pressed right arrow.");
+      break;
+  }
+  var int_left = parseInt(man.style.left);
+  int_left = isNaN(int_left) ? 0 : parseInt(int_left);
+
+  int_left += MAN_HORIZONTAL_SPEED*direction;
+  man.style.left = int_left + "px";
+}
 function timer_elasped() {
   if(!man_stop_status)
   {
@@ -74,10 +110,12 @@ function move(object_to_move, speed) {
 
   int_top += speed;
 
+ 
+
   console.log("object_to_move " + object_to_move.id + "'s offsetParent is " + object_to_move.offsetParent);
   console.log("object_to_move " + object_to_move.id + "'s top is " + object_to_move.style.top);
   object_to_move.style.top = int_top + "px";
-
+ 
 }
 
 function collpase_check_core(point, dimension) {
@@ -129,4 +167,15 @@ function collapse_check() {
   }
 
 
+}
+window.addEvent =function(element,event,fn){
+  if(element.addEventListener)
+  {
+    element.addEventListener(event,fn,false);
+    
+  }
+  else if(element.attachEvent){
+     element.attachEvent("on"+event, function(){ fn.call(element) });
+     
+   }
 }
