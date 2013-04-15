@@ -1,8 +1,3 @@
-//check browser version
-var ns4 = document.layers;
-var ns6 = document.getElementById && !document.all;
-var ns = ns4 || ns6;
-var ie = document.all;
 
 var bg, man;
 var blocks = [];
@@ -13,25 +8,28 @@ var BG_WIDTH = 800;
 var BRICK_HEIGHT = 10;
 var BRICK_WIDTH = 100;
 var MAN_HEIGHT = 106;
-var MAN_WIDTH = 80;
+var MAN_WIDTH = 66;
 var MAN_INITIAL_SPEED = 5;
 var man_speed = MAN_INITIAL_SPEED;
 var MAN_HORIZONTAL_SPEED = 5;
 var bg_speed = -2;
 var GRAVITY_SPEED = 10;
-var man_stop_status = false;
+//2013-04-15  basilwang four states
+// left  right dropping  stop
+var man_status = "dropping";
 var direction = 1; //1 means right and -1 means left
 var HORIZONTAL_MOVE_SPEED = 2;
 var fps_count;
-var frame_start_time=(new Date()).valueOf();
+var frame_start_time = (new Date()).valueOf();
 
 function init() {
 
-  window.addEvent(document, 'keydown', keyboard_check);
+  
   //alert(Math.random()*20);
   bg = document.getElementById("bg");
   man = document.getElementById("man");
-  fps_count=document.getElementById("fps_count");
+  window.addEvent(document, "keydown", keyboard_check);
+  fps_count = document.getElementById("fps_count");
   //2013-04-08 basilwang have put style.left and style.top here, we can use percentage, but need calculate percentage also later;
   man.style.top = "0px";
   //man.style.left="30%";
@@ -55,9 +53,9 @@ function init() {
   blocks = document.getElementsByClassName("brick");
 
   setTimeout(timer_elasped, 60);
+  //setTimeout(sprite_switch,60);
   //setInterval(keyboard_check, 500);
 }
-
 function keyboard_check(e) {
 
   /*
@@ -66,12 +64,8 @@ function keyboard_check(e) {
   */
   if (!e) e = window.event;
   var code;
-  if (ie) code = e.keyCode;
-  else if (ns) code = e.which;
-  else {
-    alert("unknown browser");
-    return;
-  }
+  code = e.keyCode;
+  
 
   switch (code) {
     case 37:
@@ -92,7 +86,7 @@ function keyboard_check(e) {
 
 function timer_elasped() {
 
-  if (!man_stop_status) {
+  if (man_status=="dropping") {
     man_speed += GRAVITY_SPEED;
   }
 
@@ -107,11 +101,11 @@ function timer_elasped() {
   move(bg, bg_speed);
   move(man, man_speed);
   collapse_check();
-  var frame_end_time=(new Date()).valueOf();
-  console.log((frame_end_time-frame_start_time));
-  console.log("the current FPS is " +parseInt(1000 / (frame_end_time-frame_start_time)) );
-  fps_count.innerHTML="帧数："+parseInt(1000 / (frame_end_time-frame_start_time));
-  frame_start_time=frame_end_time;
+  var frame_end_time = (new Date()).valueOf();
+  //console.log((frame_end_time - frame_start_time));
+  //console.log("the current FPS is " + parseInt(1000 / (frame_end_time - frame_start_time)));
+  fps_count.innerHTML = "帧数：" + parseInt(1000 / (frame_end_time - frame_start_time));
+  frame_start_time = frame_end_time;
   setTimeout(timer_elasped, 60);
 }
 /*
@@ -139,14 +133,12 @@ function move(object_to_move, speed) {
   如果两个矩形横向坐标相减的绝对值，小于两个矩形各自宽度一半相加的和，同时两个矩形纵向坐标相减的绝对值，小于两个矩形各自高度一半相加的和，那就说明这两个矩形碰撞了。
 */
 function collpase_check_core(obja, objb) {
-     var absX=Math.abs(obja.x-objb.x);
-     var absY=Math.abs(obja.y-objb.y);
-     var compareX=parseInt(MAN_WIDTH / 2)+parseInt(BRICK_WIDTH/2);
-     var compareY=parseInt(MAN_HEIGHT / 2)+parseInt(BRICK_HEIGHT/2);
-     if(absX<compareX&&absY<compareY)
-       return true;
-     else
-       return false; 
+  var absX = Math.abs(obja.x - objb.x);
+  var absY = Math.abs(obja.y - objb.y);
+  var compareX = parseInt(MAN_WIDTH / 2) + parseInt(BRICK_WIDTH / 2);
+  var compareY = parseInt(MAN_HEIGHT / 2) + parseInt(BRICK_HEIGHT / 2);
+  if (absX < compareX && absY < compareY) return true;
+  else return false;
 }
 /*
               2013-04-08 basilwang to see if collapse happen
@@ -172,22 +164,22 @@ function collapse_check() {
     //console.log("the first brick top is "+ (parseInt(blocks[i].style.top)+parseInt(bg.style.top)) );
     var brick_top = (parseInt(blocks[i].style.top) + parseInt(bg.style.top));
     var brick_left = parseInt(blocks[i].style.left);
-    var brick_center={
-      x:brick_left+parseInt(BRICK_WIDTH/2),
-      y:brick_top+parseInt(BRICK_HEIGHT/2)
-    }
+    var brick_center = {
+      x: brick_left + parseInt(BRICK_WIDTH / 2),
+      y: brick_top + parseInt(BRICK_HEIGHT / 2)
+    } 
     //console.log(brick_dimension);
-    if (collpase_check_core(man_center,brick_center)) {
+    if (collpase_check_core(man_center, brick_center)) {
       console.log(brick_center);
       man_speed = bg_speed;
-      man_stop_status = true;
+      man_status = "stop";
       is_collpased = true;
     }
 
 
   }
   if (!is_collpased) {
-    man_stop_status = false;
+    man_status = "dropping";
     man_speed = MAN_INITIAL_SPEED;
   }
 
