@@ -30,3 +30,13 @@
           overflow:hidden;
 
         }
+        #fps_count
+        {
+          position:absolute;
+          right:50px;
+          top:20px;
+          width:200px;
+          height:10px;
+          z-index:50;
+          font-size:25px;
+        }
