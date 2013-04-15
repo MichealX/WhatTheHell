@@ -7,8 +7,8 @@ var BG_HEIGHT = 2000;
 var BG_WIDTH = 800;
 var BRICK_HEIGHT = 10;
 var BRICK_WIDTH = 100;
-var MAN_HEIGHT = 106;
-var MAN_WIDTH = 66;
+var MAN_HEIGHT = 36;
+var MAN_WIDTH = 35;
 var MAN_INITIAL_SPEED = 5;
 var man_speed = MAN_INITIAL_SPEED;
 var MAN_HORIZONTAL_SPEED = 5;
@@ -16,7 +16,14 @@ var bg_speed = -2;
 var GRAVITY_SPEED = 10;
 //2013-04-15  basilwang four states
 // left  right dropping  stop
-var man_status = "dropping";
+var man_status = "dropping_0";
+//2013-04-15 status_sprite
+var man_sprite_status={
+   dropping:["dropping_0","dropping_1"],
+   left:["left_0","left_1"],
+   right:["right_0","right_1"],
+   stop:["stop_0"]
+}
 var direction = 1; //1 means right and -1 means left
 var HORIZONTAL_MOVE_SPEED = 2;
 var fps_count;
@@ -53,8 +60,37 @@ function init() {
   blocks = document.getElementsByClassName("brick");
 
   setTimeout(timer_elasped, 60);
-  //setTimeout(sprite_switch,60);
+  setTimeout(sprite_switch,60);
   //setInterval(keyboard_check, 500);
+}
+/*
+  2013-04-15 basilwang change sprite on different state
+*/
+function sprite_switch()
+{
+   var fixed_status=get_fixed_status();
+   var sprite=man_sprite_status[fixed_status.status];
+   var sprite_num=sprite.length;
+   if(sprite_num==1)
+   {
+     man.src="stop_0.png";
+
+   }
+   else
+   {
+    console.log(fixed_status.status + (fixed_status.sprite_index+1)%2  + ".png");
+     man.src=fixed_status.status  + "_" +  (fixed_status.sprite_index+1)%2 + ".png";
+     man_status=fixed_status.status + "_" + (fixed_status.sprite_index+1)%2;
+   }
+   setTimeout(sprite_switch,60);
+}
+function get_fixed_status()
+{
+   return {
+       status:man_status.split("_")[0],
+       sprite_index: man_status.split("_")[1]
+   } ;
+
 }
 function keyboard_check(e) {
 
@@ -86,7 +122,7 @@ function keyboard_check(e) {
 
 function timer_elasped() {
 
-  if (man_status=="dropping") {
+  if (get_fixed_status().status=="dropping") {
     man_speed += GRAVITY_SPEED;
   }
 
@@ -172,14 +208,14 @@ function collapse_check() {
     if (collpase_check_core(man_center, brick_center)) {
       console.log(brick_center);
       man_speed = bg_speed;
-      man_status = "stop";
+      man_status = "stop_1";
       is_collpased = true;
     }
 
 
   }
   if (!is_collpased) {
-    man_status = "dropping";
+    man_status = "dropping_1";
     man_speed = MAN_INITIAL_SPEED;
   }
 
