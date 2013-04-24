@@ -1,0 +1,32 @@
+        .scene
+        {
+          background-color:black;
+         
+        }
+        .brick{
+            width:100px;
+            height:10px;
+            background-color:red;
+            border:solid 1px black;
+            position:absolute;
+
+        }
+        
+        #man
+        {
+          position:absolute;
+          /*2013-04-08 basilwang don't know why we can't get null value of style.left
+          left:30%;
+          top:0px;
+          */
+        }
+        #fps_count
+        {
+          position:absolute;
+          right:50px;
+          top:20px;
+          width:200px;
+          height:10px;
+          z-index:50;
+          font-size:25px;
+        }

@@ -7,8 +7,8 @@ var BG_HEIGHT = 2000;
 var BG_WIDTH = 800;
 var BRICK_HEIGHT = 10;
 var BRICK_WIDTH = 100;
-var MAN_HEIGHT = 36;
-var MAN_WIDTH = 35;
+var MAN_HEIGHT = 70;
+var MAN_WIDTH = 106;
 var MAN_INITIAL_SPEED = 5;
 var man_speed = MAN_INITIAL_SPEED;
 var MAN_HORIZONTAL_SPEED = 5;
@@ -78,9 +78,9 @@ function sprite_switch()
    }
    else
    {
-    console.log(fixed_status.status + (fixed_status.sprite_index+1)%2  + ".png");
-     man.src=fixed_status.status  + "_" +  (fixed_status.sprite_index+1)%2 + ".png";
-     man_status=fixed_status.status + "_" + (fixed_status.sprite_index+1)%2;
+    console.log(fixed_status.status + (parseInt(fixed_status.sprite_index)+1)%2  + ".png");
+     man.src=fixed_status.status  + "_" +  (parseInt(fixed_status.sprite_index)+1)%2 + ".png";
+     man_status=fixed_status.status + "_" + (parseInt(fixed_status.sprite_index)+1)%2;
    }
    setTimeout(sprite_switch,60);
 }
@@ -106,10 +106,12 @@ function keyboard_check(e) {
   switch (code) {
     case 37:
       direction = -1;
+      man_status = "left_1";
       console.log("you pressed left arrow.");
       break;
     case 39:
       direction = 1;
+      man_status = "right_1";
       console.log("you pressed right arrow.");
       break;
   }
