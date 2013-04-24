@@ -31,8 +31,6 @@ Man.prototype = (function() {
 			//console.log("object_to_move " + this.manDom.id + "'s offsetParent is " + this.manDom.offsetParent);
 			//console.log("object_to_move " + this.manDom.id + "'s top is " + this.manDom.style.top);
 			this._y = int_top;
-
-			this.draw();
 		},
 		draw:function() {
 			this._manDom.style.width = this._width + "px";
