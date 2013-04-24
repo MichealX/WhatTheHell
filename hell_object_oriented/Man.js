@@ -7,8 +7,6 @@ function Man(id, x, y, width, height, speed) {
 	this._man_status = "dropping_0";
 	this._x = x;
 	this._y = y;
-	this._center_x = x + parseInt(this._width / 2);
-	this._center_y = y + parseInt(this._height / 2);
 }
 Man.prototype = (function() {
 	//Man的内部函数
@@ -16,10 +14,13 @@ Man.prototype = (function() {
 	//alert(this.title+" in closure");
 	return {
 		collapse: function(brick) {
-			var absX = Math.abs(this._center_x - brick.getCenterX());
-			var absY = Math.abs(this._center_y - brick.getCenterY());
+			var absX = Math.abs(this.getCenterX() - brick.getCenterX());
+			var absY = Math.abs(this.getCenterY() - brick.getCenterY());
 			var compareX = parseInt(this._width / 2) + parseInt(brick.getWidth() / 2);
 			var compareY = parseInt(this._height / 2) + parseInt(brick.getHeight() / 2);
+            console.log("absX is "+absX + " absY is "+absY);
+            console.log("absX < compareX(" + compareX + ") is " + (absX < compareX)  )   ;
+            console.log("absY < compareY(" + compareY + ") is " + (absY < compareY)  )   ;
 			if (absX < compareX && absY < compareY) return true;
 			else return false;
 		},
@@ -51,6 +52,12 @@ Man.prototype = (function() {
 		},
         setSpeed:function(speed){
             this._speed=speed;
+        },
+        getCenterX:function(){
+            return this._x + parseInt(this._width / 2);
+        },
+        getCenterY:function(){
+            return this._y + parseInt(this._height / 2);
         }
 
 

@@ -10,7 +10,7 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="7c19fca9-4680-4a53-b686-16ea2d2f92c2" time="1366788640090" ignored="false" />
     <file path="/Scene.js" changelist="7c19fca9-4680-4a53-b686-16ea2d2f92c2" time="1366798132864" ignored="false" />
-    <file path="/Man.js" changelist="7c19fca9-4680-4a53-b686-16ea2d2f92c2" time="1366797912900" ignored="false" />
+    <file path="/Man.js" changelist="7c19fca9-4680-4a53-b686-16ea2d2f92c2" time="1366798913788" ignored="false" />
     <file path="/Brick.js" changelist="7c19fca9-4680-4a53-b686-16ea2d2f92c2" time="1366798197473" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,25 +34,25 @@
       <file leaf-file-name="Man.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hell_object_oriented/Man.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="33" selection-start="793" selection-end="793" vertical-scroll-proportion="202.5">
+            <state line="55" column="0" selection-start="1685" selection-end="1880" vertical-scroll-proportion="-124.5">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Brick.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Brick.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hell_object_oriented/Brick.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="18" selection-start="342" selection-end="342" vertical-scroll-proportion="0.40852576">
+            <state line="80" column="24" selection-start="1665" selection-end="1665" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Scene.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Scene.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hell_object_oriented/Scene.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="72" selection-start="2171" selection-end="2171" vertical-scroll-proportion="0.0">
+            <state line="67" column="40" selection-start="2209" selection-end="2209" vertical-scroll-proportion="0.5418182">
               <folding />
             </state>
           </provider>
@@ -95,8 +95,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/hell_object_oriented/Man.js" />
-        <option value="$PROJECT_DIR$/hell_object_oriented/Scene.js" />
         <option value="$PROJECT_DIR$/hell_object_oriented/Brick.js" />
+        <option value="$PROJECT_DIR$/hell_object_oriented/Scene.js" />
       </list>
     </option>
   </component>
@@ -285,23 +285,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hell_object_oriented/Brick.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="24" selection-start="1665" selection-end="1665" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hell_object_oriented/Man.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="33" selection-start="793" selection-end="793" vertical-scroll-proportion="202.5">
+        <state line="55" column="0" selection-start="1685" selection-end="1880" vertical-scroll-proportion="-124.5">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hell_object_oriented/Scene.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="72" selection-start="2171" selection-end="2171" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hell_object_oriented/Brick.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="18" selection-start="342" selection-end="342" vertical-scroll-proportion="0.40852576">
+        <state line="67" column="40" selection-start="2209" selection-end="2209" vertical-scroll-proportion="0.5418182">
           <folding />
         </state>
       </provider>

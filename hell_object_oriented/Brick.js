@@ -21,8 +21,6 @@ function Brick(x, y, type) {
 
 	this._x = x;
 	this._y = y;
-	this._center_x = x + parseInt(this._width / 2);
-	this._center_y = y + parseInt(this._height / 2);
 }
 Brick.prototype = (function() {
 	//Man的内部函数
@@ -80,10 +78,10 @@ Brick.prototype = (function() {
         	return this._brickDom;
         },
         getCenterX:function(){
-            return this._center_x;
+            return this._x + parseInt(this._width / 2);
         },
         getCenterY:function(){
-            return this._center_y;
+            return this._y + parseInt(this._height / 2);
         }
 
 	}
