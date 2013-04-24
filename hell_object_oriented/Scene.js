@@ -27,6 +27,10 @@ Scene.prototype = (function() {
 				clearTimeout(this.heartbeat);
 			} else {
 				for (var i = 0; i < this._bricks.length; i++) {
+                    if(this._man.collapse(this._bricks[i]))
+                    {
+                        this._man.setSpeed(this._bricks[i].getSpeed());
+                    }
 					//2013-04-24 basilwang 检测砖块是否从底层重新出现
 					if (_is_larger_than(-this._bricks[i].getHeight(),this._bricks[i].getY())) {
 						//2013-04-24 basilwang 此时不再需要生成砖块了
@@ -57,8 +61,11 @@ Scene.prototype = (function() {
                 var random_left = Math.random() * this._width;
                 random_left = parseInt(random_left);
 
-               var brick=new Brick(random_left, this._height,"normal");
-               brick.setSpeed(20);
+
+                var random_type = Math.random() * 2;
+                random_type = parseInt(random_type);
+               var brick=new Brick(random_left, this._height,random_type);
+               brick.setSpeed(-20);
                this._bricks[this._bricks.length]=brick;
                this._sceneDom.appendChild(brick.getBrickDom());
                setTimeout(this.generate_bricks.bind(this), 1000);
