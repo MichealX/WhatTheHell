@@ -10,8 +10,8 @@ Scene.prototype = (function() {
 	var _generate_bricks = function() {
 
 	};
-	var _is_larger_than=function(a,b){
-        return a>b;
+	var _is_larger_than = function(a, b) {
+		return a > b;
 	};
 	//王华杰 不能在此处应用this
 	//alert(this.title+" in closure");
@@ -21,28 +21,18 @@ Scene.prototype = (function() {
 			this._sceneDom.style.height = this._height + "px";
 		},
 		heartbeat: function() {
-            
-            if(_is_larger_than(this._man.getY(),this._height-this._man.getHeight()))
-            {
-            	this.man.setIsalive(false);
-            }         
-
-			if (this._man.getIsalive()) {
-				this._man.move();
-				this._man.draw();
-				/*
-           for(var i=0;i<bricks.length;i++)
-           {
-           	 this.bricks[i].move();
-           	 this.bricks[i].draw();
-           }
-           */
-				setTimeout(this.heartbeat.bind(this), 60);
-			}
+			//2013-04-24 basilwang 检测小人是否活着
+			if (_is_larger_than(this._man.getY(), this._height - this._man.getHeight())) {
+				this._man.setIsalive(false);
+				clearTimeout(this.heartbeat);
+            }
 			else
 			{
-				clearTimeout(this.heartbeat);
+
+				this._man.move();
+				setTimeout(this.heartbeat.bind(this), 60);
 			}
+
 		},
 		start: function() {
 			this.draw();
@@ -50,5 +40,7 @@ Scene.prototype = (function() {
 			this.heartbeat();
 
 		}
+
 	}
+
 })();

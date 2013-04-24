@@ -46,6 +46,18 @@ Brick.prototype=(function()
 			this._brickDom.style.height = this._height + "px";
 			this._brickDom.style.top = this._y + "px";
 			this._brickDom.style.left = this._x + "px";
+		},
+		getY:function(){
+			return this._y;
+		},
+		getHeight:function(){
+			return this._height;
+		},
+		getIsalive:function(){
+			return this._isalive;
+		},
+		setIsalive:function(isalive){
+            this._isalive=isalive;
 		}
 	}
 })();

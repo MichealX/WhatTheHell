@@ -23,19 +23,23 @@ Man.prototype = (function() {
 		},
 		move: function() {
 			
+			if(!this._isalive)
+				return ;
 			var int_top = parseInt(this._manDom.style.top);
 			int_top = isNaN(int_top) ? 0 : parseInt(int_top);
 			int_top += this._speed;
 			//console.log("object_to_move " + this.manDom.id + "'s offsetParent is " + this.manDom.offsetParent);
 			//console.log("object_to_move " + this.manDom.id + "'s top is " + this.manDom.style.top);
 			this._y = int_top;
+
+			this.draw();
 		},
-		draw: function() {
+		draw:function() {
 			this._manDom.style.width = this._width + "px";
 			this._manDom.style.height = this._height + "px";
 			this._manDom.style.top = this._y + "px";
 			this._manDom.style.left = this._x + "px";
-		},
+	    },
 		getY:function(){
 			return this._y;
 		},
