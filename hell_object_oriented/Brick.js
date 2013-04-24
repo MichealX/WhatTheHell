@@ -1,14 +1,15 @@
 function Brick(x, y, type) {
-	this._type = type || "normal";
+	this._type = type || 0;
 	this._brickDom = document.createElement("img");
 	this._brickDom.style.zIndex=100;
 	this._brickDom.style.position="absolute";
 	switch (type) {
-		case "normal":
-			this._brickDom.src="normal_brick.png";
+		case 1:
+			this._brickDom.src="hard_brick.png";
 		    this._width = 100;
 	        this._height = 10;
 			break;
+		case 0:
 		default:
 			this._brickDom.src="normal_brick.png";
 		    this._width = 100;

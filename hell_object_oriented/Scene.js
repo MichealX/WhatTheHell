@@ -57,7 +57,9 @@ Scene.prototype = (function() {
                 var random_left = Math.random() * this._width;
                 random_left = parseInt(random_left);
 
-               var brick=new Brick(random_left, this._height,"normal");
+                var random_type = Math.random() * 2;
+                random_type = parseInt(random_type);
+               var brick=new Brick(random_left, this._height,random_type);
                brick.setSpeed(20);
                this._bricks[this._bricks.length]=brick;
                this._sceneDom.appendChild(brick.getBrickDom());
