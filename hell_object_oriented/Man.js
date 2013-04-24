@@ -28,12 +28,12 @@ Man.prototype = (function() {
 				case 37:
 					direction = -1;
 					//man_status = "left_1";
-					console.log("you pressed left arrow.");
+					//console.log("you pressed left arrow.");
 					break;
 				case 39:
 					direction = 1;
 					//man_status = "right_1";
-					console.log("you pressed right arrow.");
+					//console.log("you pressed right arrow.");
 					break;
 			}
             this._x+= this._hori_speed * direction;
@@ -50,9 +50,9 @@ Man.prototype = (function() {
 			var absY = Math.abs(this.getCenterY() - brick.getCenterY());
 			var compareX = parseInt(this._width / 2) + parseInt(brick.getWidth() / 2);
 			var compareY = parseInt(this._height / 2) + parseInt(brick.getHeight() / 2);
-			console.log("absX is " + absX + " absY is " + absY);
-			console.log("absX < compareX(" + compareX + ") is " + (absX < compareX));
-			console.log("absY < compareY(" + compareY + ") is " + (absY < compareY));
+			//console.log("absX is " + absX + " absY is " + absY);
+			//console.log("absX < compareX(" + compareX + ") is " + (absX < compareX));
+			//console.log("absY < compareY(" + compareY + ") is " + (absY < compareY));
 			if (absX < compareX && absY < compareY) return true;
 			else return false;
 		},
