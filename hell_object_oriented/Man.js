@@ -8,14 +8,15 @@ function Man(id, x, y, width, height, speed,hori_speed) {
 	this._man_status = "dropping_0";
 	this._x = x;
 	this._y = y;
-	window.addEvent(document, "keydown", this.keyboard_check.bind(this));
+
+	window.addEvent(document, "keydown", this.keyboard_check());
 }
 Man.prototype = (function() {
 	//Man的内部函数
 	//王华杰 不能在此处应用this
 	//alert(this.title+" in closure");
 	return {
-		keyboard_check: function(e) {
+		_keyboard_check: function(e) {
 			/*
             //2013-04-10 basilwang we can control direction only when stop
             if (!man_stop_status) return;
@@ -37,6 +38,13 @@ Man.prototype = (function() {
 			}
             this._x+= this._hori_speed * direction;
 		},
+		keyboard_check:function(){
+                        var self=this;
+	                    return function()
+	                    {
+	                    	 self._keyboard_check.call(self);
+	                    }
+	          },
 		collapse: function(brick) {
 			var absX = Math.abs(this.getCenterX() - brick.getCenterX());
 			var absY = Math.abs(this.getCenterY() - brick.getCenterY());

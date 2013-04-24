@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c19fca9-4680-4a53-b686-16ea2d2f92c2" name="Default" comment="" />
+    <list default="true" id="7c19fca9-4680-4a53-b686-16ea2d2f92c2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hell_object_oriented/normal_brick.png" afterPath="$PROJECT_DIR$/hell_object_oriented/normal_brick.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hell_object_oriented/Man.js" afterPath="$PROJECT_DIR$/hell_object_oriented/Man.js" />
+    </list>
     <ignored path="WhatTheHell.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="7c19fca9-4680-4a53-b686-16ea2d2f92c2" time="1366788640090" ignored="false" />
@@ -30,7 +33,7 @@
       <file leaf-file-name="Man.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hell_object_oriented/Man.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="0" selection-start="2464" selection-end="2465" vertical-scroll-proportion="-124.5">
+            <state line="87" column="0" selection-start="2661" selection-end="2662" vertical-scroll-proportion="-124.5">
               <folding />
             </state>
           </provider>
@@ -290,7 +293,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hell_object_oriented/Man.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="0" selection-start="2464" selection-end="2465" vertical-scroll-proportion="-124.5">
+        <state line="87" column="0" selection-start="2661" selection-end="2662" vertical-scroll-proportion="-124.5">
           <folding />
         </state>
       </provider>

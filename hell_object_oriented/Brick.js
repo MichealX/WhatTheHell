@@ -3,6 +3,9 @@ function Brick(x, y, type) {
 	this._brickDom = document.createElement("img");
 	this._brickDom.style.zIndex=100;
 	this._brickDom.style.position="absolute";
+	//2013-04-24 basilwang 防止左上角闪烁
+	this._brickDom.style.top="-999px";
+	this._brickDom.style.left="-999px";
 	switch (type) {
         case 1:
             this._brickDom.src="hard_brick.png";
