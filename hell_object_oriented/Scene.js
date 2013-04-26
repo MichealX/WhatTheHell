@@ -26,9 +26,11 @@ Scene.prototype = (function() {
 				this._needGenerateBricks = false;
 				clearTimeout(this.heartbeat);
 			} else {
+                var is_collpased = false;
 				for (var i = 0; i < this._bricks.length; i++) {
 					if (this._man.collapse(this._bricks[i])) {
-						this._man.setSpeed(this._bricks[i].getSpeed());
+                        is_collpased = true;
+                        this._man.setSpeed(this._bricks[i].getSpeed());
 					}
 					//2013-04-24 basilwang 检测砖块是否从底层重新出现
 					if (_is_larger_than(-this._bricks[i].getHeight(), this._bricks[i].getY())) {
@@ -45,6 +47,9 @@ Scene.prototype = (function() {
 					this._bricks[i].move();
 					this._bricks[i].draw();
 				}
+                if (!is_collpased) {
+                    this._man.resetSpeed();
+                }
 				this._man.move();
 				this._man.draw();
 				setTimeout(this.heartbeat(), 60);

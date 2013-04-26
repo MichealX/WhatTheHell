@@ -36,6 +36,7 @@ Man.prototype = (function() {
 					//console.log("you pressed right arrow.");
 					break;
 			}
+            if(Math.abs(direction)===1)
             this._x+= this._hori_speed * direction;
 		},
 		keyboard_check:function(){
@@ -90,7 +91,10 @@ Man.prototype = (function() {
 		},
 		getCenterY: function() {
 			return this._y + parseInt(this._height / 2);
-		}
+		},
+        resetSpeed:function(){
+            this._speed=5;
+        }
 
 
 
