@@ -3,7 +3,7 @@ function Man(id, x, y, width, height, speed,hori_speed) {
 	this._height = height;
 	this._manDom = document.getElementById(id);
 	this._speed = speed || 10;
-	this._hori_speed=hori_speed || 2;
+	this._hori_speed=hori_speed || 4;
 	this._isalive = true;
 	this._man_status = "dropping_0";
 	this._x = x;
@@ -94,6 +94,9 @@ Man.prototype = (function() {
 		},
         resetSpeed:function(){
             this._speed=5;
+        },
+        getBottomY:function(){
+        	return this._y + parseInt(this._height);
         }
 
 

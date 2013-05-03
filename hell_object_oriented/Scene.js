@@ -27,7 +27,10 @@ Scene.prototype = (function() {
                 var is_collpased = false;
 				for (var i = 0; i < this._bricks.length; i++) {
 					var _brick=this._bricks[i];
-					if (this._man.collapse(_brick)) {
+					if ((this._man.getBottomY()<_brick.getBottomY()
+					      && this._man.getBottomY() > _brick.getY()
+                        )
+						&&this._man.collapse(_brick)) {
                         is_collpased = true;
                         //2013-04-26 徐灿 小人碰到类型为1的砖块死亡
                         if(_brick.getType()==1)

@@ -98,6 +98,9 @@ Brick.prototype = (function() {
         getCenterY:function(){
             return this._y + parseInt(this._height / 2);
         },
+        getBottomY:function(){
+            return this._y + parseInt(this._height);
+        },
         //2013-04-26 徐灿 增加砖块类型
         getType:function(){
         	return this._type;
