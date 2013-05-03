@@ -70,7 +70,7 @@ Scene.prototype = (function() {
 				random_left = parseInt(random_left);
 
 
-				var random_type = Math.random() * 2;
+				var random_type = Math.random() * 4;
 				random_type = parseInt(random_type);
 				var brick = new Brick(random_left, this._height, random_type);
 				brick.setSpeed(-5);

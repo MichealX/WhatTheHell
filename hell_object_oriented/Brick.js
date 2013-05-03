@@ -7,16 +7,26 @@ function Brick(x, y, type) {
 	this._brickDom.style.top="-999px";
 	this._brickDom.style.left="-999px";
 	switch (type) {
-        case 1:
-            this._brickDom.src="hard_brick.png";
-            this._width = 100;
-            this._height = 10;
-            break;
-		case 0:
-		default:
+        case 0:
 			this._brickDom.src="normal_brick.png";
-		    this._width = 100;
-	        this._height = 10;
+		    this._width = 160;
+	        this._height = 20;
+			break;
+		case 1:	
+            this._brickDom.src="thorn_brick.png";
+            this._width = 160;
+            this._height = 20;
+            break;
+		case 2:
+			this._brickDom.src="flip_brick.png";
+			this._width = 160;
+			this._height = 20;
+			break;
+		case 3:	
+			this._brickDom.src="miss_brick.png";
+		    this._width = 160;
+	        this._height = 20;
+			break;
 	}
 
 	this._speed = 0;
