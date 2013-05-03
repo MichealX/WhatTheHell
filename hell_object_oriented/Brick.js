@@ -6,6 +6,8 @@ function Brick(x, y, type) {
 	//2013-04-24 basilwang 防止左上角闪烁
 	this._brickDom.style.top="-999px";
 	this._brickDom.style.left="-999px";
+	//2013-04-26 徐灿 增加砖块类型
+	this._type=type;
 	switch (type) {
         case 0:
 			this._brickDom.src="normal_brick.png";
@@ -95,7 +97,12 @@ Brick.prototype = (function() {
         },
         getCenterY:function(){
             return this._y + parseInt(this._height / 2);
+        },
+        //2013-04-26 徐灿 增加砖块类型
+        getType:function(){
+        	return this._type;
         }
+
 
 	}
 })();

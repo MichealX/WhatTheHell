@@ -22,14 +22,20 @@ Scene.prototype = (function() {
 			//2013-04-24 basilwang 检测小人是否活着
 			if (_is_larger_than(this._man.getY(), this._height - this._man.getHeight())) {
 				this._man.setIsalive(false);
-				//2013-04-24 basilwang 此时不再需要生成砖块了
-				this._needGenerateBricks = false;
-				clearTimeout(this.heartbeat);
+				this._gallery_collect();
 			} else {
                 var is_collpased = false;
 				for (var i = 0; i < this._bricks.length; i++) {
 					if (this._man.collapse(this._bricks[i])) {
                         is_collpased = true;
+                        //2013-04-26 徐灿 小人碰到类型为1的砖块死亡
+                        if(this._bricks[i].getType()==1)
+                        {
+                        	this._man.setIsalive(false);
+                        	this._gallery_collect();
+                        	//2013-05-03 basilwang 必须返回防止执行setTimeout
+                        	return;
+                        }
                         this._man.setSpeed(this._bricks[i].getSpeed());
 					}
 					//2013-04-24 basilwang 检测砖块是否从底层重新出现
@@ -54,6 +60,14 @@ Scene.prototype = (function() {
 				this._man.draw();
 				setTimeout(this.heartbeat(), 60);
 			}
+
+		},
+		_gallery_collect:function()
+		{
+            //2013-04-24 basilwang 此时不再需要生成砖块了
+		    this._needGenerateBricks = false;
+		    clearTimeout(this.heartbeat);
+		    alert("你挂了！！");
 
 		},
 		heartbeat: function() {
