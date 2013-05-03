@@ -26,32 +26,33 @@ Scene.prototype = (function() {
 			} else {
                 var is_collpased = false;
 				for (var i = 0; i < this._bricks.length; i++) {
-					if (this._man.collapse(this._bricks[i])) {
+					var _brick=this._bricks[i];
+					if (this._man.collapse(_brick)) {
                         is_collpased = true;
                         //2013-04-26 徐灿 小人碰到类型为1的砖块死亡
-                        if(this._bricks[i].getType()==1)
+                        if(_brick.getType()==1)
                         {
                         	this._man.setIsalive(false);
                         	this._gallery_collect();
                         	//2013-05-03 basilwang 必须返回防止执行setTimeout
                         	return;
                         }
-                        this._man.setSpeed(this._bricks[i].getSpeed());
+                        this._man.setSpeed(_brick.getSpeed());
 					}
 					//2013-04-24 basilwang 检测砖块是否从底层重新出现
-					if (_is_larger_than(-this._bricks[i].getHeight(), this._bricks[i].getY())) {
+					if (_is_larger_than(-_brick.getHeight(), _brick.getY())) {
 						//2013-04-24 basilwang 此时不再需要生成砖块了
 						this._needGenerateBricks = false;
-						this._bricks[i].setIsalive(false);
+						_brick.setIsalive(false);
 						var random_left = Math.random() * this._width;
 						random_left = parseInt(random_left);
-						this._bricks[i].setX(random_left);
-						this._bricks[i].setY(this._height);
-						this._bricks[i].setIsalive(true);
+						_brick.setX(random_left);
+						_brick.setY(this._height);
+						_brick.setIsalive(true);
 					}
 
-					this._bricks[i].move();
-					this._bricks[i].draw();
+					_brick.move();
+					_brick.draw();
 				}
                 if (!is_collpased) {
                     this._man.resetSpeed();
