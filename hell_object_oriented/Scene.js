@@ -20,7 +20,10 @@ Scene.prototype = (function() {
 		},
 		_heartbeat: function() {
 			//2013-04-24 basilwang 检测小人是否活着
-			if (_is_larger_than(this._man.getY(), this._height - this._man.getHeight())) {
+			//2013-05-06 梁茂秀  增加小人碰到背景上方时死亡
+			if (_is_larger_than(this._man.getY(), this._height - this._man.getHeight())
+                 || _is_larger_than(0,this._man.getY())
+				) {
 				this._man.setIsalive(false);
 				this._gallery_collect();
 			} else {
@@ -47,7 +50,8 @@ Scene.prototype = (function() {
 						//2013-04-24 basilwang 此时不再需要生成砖块了
 						this._needGenerateBricks = false;
 						_brick.setIsalive(false);
-						var random_left = Math.random() * this._width;
+						//2013-05-06 梁茂秀 防止砖块超出屏幕
+						var random_left = Math.random() * (this._width-_brick.getWidth());
 						random_left = parseInt(random_left);
 						_brick.setX(random_left);
 						_brick.setY(this._height);
@@ -84,13 +88,14 @@ Scene.prototype = (function() {
 			//2013-04-24 basilwang 生成砖块，当有一块转移除屏幕时，我们停止生成砖块，该移除的砖块会从底部重新出现
 			if (this._needGenerateBricks) {
 
-				var random_left = Math.random() * this._width;
-				random_left = parseInt(random_left);
-
-
+				
 				var random_type = Math.random() * 4;
 				random_type = parseInt(random_type);
-				var brick = new Brick(random_left, this._height, random_type);
+				var brick = new Brick(0, this._height, random_type);
+				//2013-05-06 梁茂秀 防止砖块超出屏幕
+				var random_left = Math.random() * (this._width-brick.getWidth());
+				random_left = parseInt(random_left);
+                brick.setX(random_left);
 				brick.setSpeed(-5);
 				this._bricks[this._bricks.length] = brick;
 				this._sceneDom.appendChild(brick.getBrickDom());
