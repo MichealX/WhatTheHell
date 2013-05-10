@@ -1,11 +1,12 @@
         .scene
         {
-          background-color:black;
+          background:url(back.png);
+      background-repeat:repeat;
          
         }
         .brick{
-            width:100px;
-            height:10px;
+            width:120px;
+            height:8px;
             background-color:red;
             border:solid 1px black;
             position:absolute;
@@ -19,6 +20,7 @@
           left:30%;
           top:0px;
           */
+      display:none;
         }
         #fps_count
         {
@@ -30,3 +32,74 @@
           z-index:50;
           font-size:25px;
         }
+    #bg .score{
+      position:absolute;
+      font-size:14px;
+      font-family:Georgia, "Times New Roman", Times, serif;
+      color:#0FF;
+      z-index:999;
+      background-color:#666;
+      width:500px;
+      height:30px;
+      text-align:center;
+      }
+    #thorn
+    {
+      position:absolute;
+      z-index:999;
+      background:url(ue.png);
+      width:450px;
+      height:20px;
+      text-align:center;
+      top:38px;
+      left:28px;
+      display:none;
+    
+    }
+    #score{
+      color:#F60;
+      font-size:18px;
+    
+    
+    }
+    #wall
+    {
+      position:absolute;
+      z-index:999;
+      background:url(mai.png);
+      width:500px;
+      height:670px;
+      text-align:center;
+      top:38px;
+      display:none;
+    }
+    #startBtn{
+      
+      background-image:url(btn.png);
+      position:absolute;
+      left:200px;
+      top:250px;
+      cursor:pointer;
+      width:100px;
+      height:100px;
+      overflow:hidden;
+      }
+    #bat
+    { position:absolute;
+      background-color:#06F;
+      width:500px;
+      height:700px;
+      
+      
+      
+      }
+    #title
+    { position:absolute;
+      font-size:30px;
+      font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+      color:#9C0;
+      z-index:999;
+      left:140px;
+      top:200px;
+      font-weight:bold;
+    }

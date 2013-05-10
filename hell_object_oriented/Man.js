@@ -3,7 +3,7 @@ function Man(id, x, y, width, height, speed,hori_speed) {
 	this._height = height;
 	this._manDom = document.getElementById(id);
 	this._speed = speed || 10;
-	this._hori_speed=hori_speed || 4;
+	this._hori_speed=hori_speed || 10;
 	this._isalive = true;
 	this._man_status = "dropping_0";
 	this._x = x;
@@ -54,7 +54,9 @@ Man.prototype = (function() {
 			//console.log("absX is " + absX + " absY is " + absY);
 			//console.log("absX < compareX(" + compareX + ") is " + (absX < compareX));
 			//console.log("absY < compareY(" + compareY + ") is " + (absY < compareY));
-			if (absX < compareX && absY < compareY) return true;
+			//if (absX < compareX && absY < compareY) return true;
+			//2013-05-07 徐灿 防止小人陷入方块（个别方块还是会陷入，不知道咋回事）
+			if (absX <= compareX && absY <=compareY) return true;
 			else return false;
 		},
 		move: function() {

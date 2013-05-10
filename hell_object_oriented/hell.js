@@ -14,9 +14,11 @@ window.addEvent = function(element, event, fn) {
 function init() {
 
   var SCENE_WIDTH=500;
-  var man=new Man("man",SCENE_WIDTH/2,0,70,83,5);  
-  var scene=new Scene("bg",SCENE_WIDTH,750,man);
+  // 2013-05-09 徐灿调整小人出生位置和画布高度
+  var man=new Man("man",SCENE_WIDTH/2,100,50,61,5);  
+  var scene=new Scene("bg",SCENE_WIDTH,700,man);
   scene.start();
+
 
   //man.draw();
 

@@ -9,16 +9,24 @@
   <script src="Brick.js"></script> 
   <script src="hell.js"></script>
 </head>
-<body onload="init();" >
+<body onload="" >
   <div id="fps_count">
   </div>
   <!--2013-03-13 basilwang webkit can't get correct height if you put height in css, so we put here-->
+ <!-- 2013-05-07 徐灿更改界面-->
   <div id="bg"  class="scene" >
-    
+      <div class="score">floor：<span id="score">0</span></div>
+        <div id="thorn"></div>
+        <div id="wall"></div>
+    <div id="bat">
+            <div id="title">是男人就下一百层</div>
+            <div id="startBtn" onclick="init();"></div>
+        </div>
 
   </div>
   <!--2013-04-08 basilwang can't put mario in bg, don't know why always get the null value from man's offsetParent--> 
-  <img src="dropping_0.png" alt="" id="man" />
+  
+  <img src="stop_0.png" alt="" id="man" />
 
 </body>
 </html>

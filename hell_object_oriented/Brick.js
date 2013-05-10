@@ -8,29 +8,33 @@ function Brick(x, y, type) {
 	this._brickDom.style.left="-999px";
 	//2013-04-26 徐灿 增加砖块类型
 	this._type=type;
+	//2013-05-07 徐灿 应用此办法增加普通砖块产生几率
 	switch (type) {
-        case 0:
+       
+		case 0:;
+		case 1:;
+		case 2:;
+		case 3:;
+		case 4:;
 			this._brickDom.src="normal_brick.png";
-		    this._width = 160;
-	        this._height = 20;
+			
 			break;
-		case 1:	
+		case 5:;
+		case 6:	
             this._brickDom.src="thorn_brick.png";
-            this._width = 160;
-            this._height = 20;
+			
             break;
-		case 2:
+		case 7:;
+		case 8:
 			this._brickDom.src="flip_brick.png";
-			this._width = 160;
-			this._height = 20;
 			break;
-		case 3:	
+		case 9:	;
+		case 10:
 			this._brickDom.src="miss_brick.png";
-		    this._width = 160;
-	        this._height = 20;
 			break;
 	}
-
+    this._width = 120;
+	this._height = 15;
 	this._speed = 0;
 	this._isalive = true;
 
