@@ -38,6 +38,17 @@ Man.prototype = (function() {
 			}
             if(Math.abs(direction)===1)
             this._x+= this._hori_speed * direction;
+            //黄玉 05-15 解决小人移动到右边框的时候不能向左移动的问题，就是漏了一个等号
+            if(Math.abs(direction)===1)
+            this._x+= this._hori_speed * direction;
+            if(Math.abs(direction)===1)
+				if (this._x > 20 && this._x < (480 - this._width)) {
+					this._x += this._hori_speed * direction;
+				} else if (this._x <= 20) {
+					this._x = 21;
+				} else if (this._x >= 480 - this._width)	{
+					this._x = 480 - this._width - 1;
+				}
 		},
 		keyboard_check:function(){
                         var self=this;
